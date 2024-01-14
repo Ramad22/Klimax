@@ -16,6 +16,11 @@
     padding: 20px 0 20px 0;
     position: fixed;
     width: 100%;
+    margin-left: 580px;
+}
+.logo img {
+    margin-left: -600px;
+    border: none;
 }
 
 .container {
@@ -46,13 +51,18 @@
 .navbar .box-navbar .menu li {
     text-align: right;
     line-height: 2;
+    margin-left: 12px;
+    float: right;
+    
 }
+
 
 .navbar .box-navbar .menu li a {
     margin-left: 15px;
     text-decoration: none;
     color: aliceblue;
     padding: 0px;
+    
 }
 
 .navbar .box-navbar .menu li a:hover{
@@ -82,14 +92,16 @@
     grid-template-rows: 1fr;
     column-gap: 50px;
     margin-top: 100px;
+    /* align-items: center;
+    justify-content: space-between; */
 }
 
 .hero .box-hero .box:nth-child(1) h1 {
     color: white;
     /* font-size: 2vw; */
-    font-size: 35px;
+    font-size: 30px;
     line-height: 1.3;
-    margin-top: 45px;
+    margin-top: -25px;
 }
 .hero .box-hero .box:nth-child(1) p {
     text-decoration: none;
@@ -100,17 +112,46 @@
 }
 .hero .box-hero .box:nth-child(2) img {
     width: 100%;
-    margin-bottom: 60px;
+    /* position: relative;
+    top: -90px; */
+    margin-top: -100px;
+    margin-bottom: 0px;
+    align-items: center;
 }
+.hero .box-hero .box:nth-child(1) button {
+    width: 180px;
+    height: 50px;
+    background-color: blue;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all.3s;
+    -o-transition: all.3s;
+}
+.hero .box-hero .box:nth-child(1) button:hover {
+    background-color:cadetblue;
+}
+
 @media screen and (max-width: 990px) {
     .menu-bar{
-        display: block;
-        text-align: right;
-        margin-left: 180px;
+        display: flex;
+        text-align: left;
+        margin-left: 10px;
     }
-    .navbar .box-navbar .menu .logo{
-       order: -1;
-       margin-left: 1800px;
+    .hero .box-hero .box:nth-child(1) button {
+        width: 100px;
+    }
+
+    .logo img {
+        width: 100px;
+        height: 70px;
+        margin-right: 100%;
+        border: none;
     }
     
     .navbar .box-navbar .menu{   
@@ -143,3 +184,74 @@
         
     }
 }
+@media screen and (max-width: 768px){
+    .hero .box-hero{
+        grid-template-columns: 1fr;
+        grid-auto-rows: repeat(2, 1fr);
+        row-gap: 20px;
+    }
+    .hero .box-hero .box:nth-child(1){
+        order: 2;
+        text-align: center;
+    }
+    .hero .box-hero .box:nth-child(2){
+        order: 1;
+        text-align: center;
+    }
+   
+    .hero .box-hero .box:nth-child(2) img {
+        width: 55vw;
+        /* position: relative; */
+        top: 10px;
+    }
+}
+
+@media screen and (max-width: 370px){
+    .hero .box-hero .box:nth-child(2){
+        width: 55vh;
+        align-self: flex-end;
+        justify-content: center;
+    }
+}
+.jadwal .table h1{
+    text-align: center;
+    color: white;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+.jadwal{
+    min-height: 100vh;
+}
+.laporan{
+    min-height: 100vh;
+}
+.laporan h1 {
+    text-align: center;
+    color: white;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+
+}
+.label {
+    align-items: center;
+    float: center;
+}
+.lokasi{
+    min-height: 100vh;
+}
+.lokasi h1 {
+    text-align: center;
+    color: white;
+    font-size: 30px;
+
+}
+.lokasi iframe  {
+    float: center;
+    margin-left: 250px;
+    margin-top: 1%;
+}
+
+
+

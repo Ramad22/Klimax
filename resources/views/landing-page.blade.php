@@ -20,7 +20,7 @@
         <div class="container">
             <div class="box-navbar">
                 <div class="logo">
-                    <img class="logo" src="{{asset('assets/img/icon_klimax.png')}}" alt="" width="100px" height="70px">
+                    <img s src="{{asset('assets/img/icon_klimax.png')}}" alt="" width="100px" height="70px">
                 </div>
                 <ul class="menu">
                     <li><a href="#"</a>Home</li>
@@ -41,15 +41,112 @@
                     <h1>Keamanan Lingkungan</br> Maksimal </h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Laudantium saepe earum </p>
+                        <button>Laporkan</button>
                 </div>
             
             <div class="box">
-                <img src="{{ asset('assets/img/icon_jadwal.png')}}" alt="" width="" height="">
+                <img src="{{ asset('assets/img/jadwal_icon.png')}}" alt="" width="" height="">
             </div>
         </div>
     </div>
 </div>
 </header>
+
+                               
+
+    <div class="jadwal">
+        <div class="container">
+            <div class="table">
+                <h1>Jadwal Ronda</h1>
+                <table class="table table-dark table-striped-columns table-responsive">
+                    <th>No</th>
+                    <th>Senin</th>
+                    <th>Selasa</th>
+                    <th>Rabu</th>
+                    <th>Kamis</th>
+                    <th>Jumat</th>
+                    <th>Sabtu</th>
+                    <th>Minggu</th>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Asep</td>
+                        <td>Ahmad</td>
+                        <td>Kalbu</td>
+                        <td>Adi</td>
+                        <td>Bambang</td>
+                        <td>Aip</td>
+                        <td>salman</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Asep</td>
+                        <td>Ahmad</td>
+                        <td>Kalbu</td>
+                        <td>Adi</td>
+                        <td>Bambang</td>
+                        <td>Aip</td>
+                        <td>salman</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Asep</td>
+                        <td>Ahmad</td>
+                        <td>Kalbu</td>
+                        <td>Adi</td>
+                        <td>Bambang</td>
+                        <td>Aip</td>
+                        <td>salman</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Asep</td>
+                        <td>Ahmad</td>
+                        <td>Kalbu</td>
+                        <td>Adi</td>
+                        <td>Bambang</td>
+                        <td>Aip</td>
+                        <td>salman</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Asep</td>
+                        <td>Ahmad</td>
+                        <td>Kalbu</td>
+                        <td>Adi</td>
+                        <td>Bambang</td>
+                        <td>Aip</td>
+                        <td>salman</td>
+                    </tr>
+                  </table>
+            </div>
+        </div>
+    </div>
+
+                        
+    <div class="laporan">
+        <div class="container">
+            <h1>Laporan</h1>
+            <center>
+                <div class="form-group col-sm-3 d-flex align-items-center mt-4">
+                    <label style="color: white" class="mr-2" for="">TKP <small>(Tempat Kejadian Perkara)</small></label>
+                    <input type="text" name="" id="" class="form-control" placeholder="contoh b.02">
+                </div>
+                <button class="btn btn-primary mt-3">Laporkan</button>
+            </div>
+        </div>
+    </center>
+
+    <div class="lokasi">
+        <div class="container">
+            <h1>Lokasi</h1>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d206.56896733417756!2d107.55233299154435!3d-7.016718388760505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sid!2sid!4v1705242611302!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+
+
+    
 </body>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
