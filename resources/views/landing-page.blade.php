@@ -38,7 +38,7 @@
         <div class="container">
             <div class="box-hero">
                 <div class="box">
-                    <h1>Keamanan Lingkungan</br> Maksimal </h1>
+                    <h1>Keamanan Lingkungan</br> Maxsimal </h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Laudantium saepe earum </p>
                         <button>Laporkan</button>
@@ -146,9 +146,11 @@
 
 
 
-    
+    <footer>
+        <p>&copy; PKK</p>
+    </footer>
 </body>
-<script src="{{ asset('assets/js/main.js') }}"></script>
+<script src="{{ asset('assets/js/landing.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
 </script>

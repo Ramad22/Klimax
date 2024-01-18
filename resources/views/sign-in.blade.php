@@ -13,6 +13,7 @@
 
   <style>
     body {
+      margin-top: -30px;
       background-color: #f8f9fa;
     }
     .login-container {
@@ -40,11 +41,16 @@
         padding: 3%;
         text-align: center;
         margin: 6% auto;
-        margin-top: 6%;
-        float: center;
+        margin-top: 6% auto;
+        display: block;
     }
     .img{
       margin-top: 20px;
+    }
+    .error{
+      color: red;
+      font-size: 12px;
+      
     }
     
   </style>
@@ -59,19 +65,26 @@
       {{--  <h3 style="color: #f8f9fa">Login</h3>  --}}
     </div>
     <div class="card-body">
-      <form>
+      <form action="/progresLogin" method="POST">
+        @csrf
         <div class="form-group mb-6">
-          <label style="color: gray; font-size: 12px; margin-bottom: 60px; " class="" for="">No. Handphone</label>
-          <input type="text" class="form-control mb-6 input-hp" id="" placeholder="Masukkan no handphone" required>
+          <label style="color: white; font-size: 12px; margin-bottom: 60px; " class="" for="">Email</label>
+          <input type="text" class="form-control mb-6 input-hp" id="" placeholder="Masukkan email" name="email" required>
+          @error('email')
+              <div class="error"> {{$message}} </div>
+          @enderror
         </div>
         <div class="form-group">
-          <label style="color: gray; font-size: 12px; margin-buttom: 60px;" for="">Password</label>
-          <input type="password" class="form-control input-password" id="password" placeholder="Masukkan password" required>
+          <label style="color: white; font-size: 12px; margin-buttom: 60px;" for="">Password</label>
+          <input type="password" class="form-control input-password" id="password" placeholder="Masukkan password" name="password" required>
+          @error('password')
+              <div class="error"> {{$message}} </div>
+          @enderror
         </div>
         <div style="display: flex; justify-content: ; flex-direction: column; align-items: ;">
           <a style="margin-bottom: 0px; font-size: 12px; color: white;" href="#" class="text-right">Reset Password</a>
-          <button style="margin-top: 1%" type="submit" class="btn btn-primary submit ">Masuk</button>
-      </div>      
+          <button style="margin-top: 1%;" type="submit" class="btn btn-primary submit ">Masuk</button>
+        </div>      
       </form>
     </div>
   </div>

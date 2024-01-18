@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class SigninController extends Controller
+{
+    public function sign_in()
+    {
+        return view("sign-in");
+    }
+    public function register()
+    {
+        return view("sign-up");
+    }
+    public function progresRegister(Request $request)
+    {
+        $user = User::create([
+            "name"=> $request->name,
+            "email"=> $request->email,
+            "id_role"=> $request->id_role,
+            "password"=> bcrypt($request->password),
+        ]);
+
+        event(new Registered($user));
+        Auth::login($user);
+        return redirect('/email/verify/');
+    }
+
+    public function progresLogin(Request $request)
+    {
+        $user = [
+            'email'=> $request->email,
+            // 'email_veripied_at'=>$request->email_verified_at,
+            'password'=>$request->password,
+        ];
+        if(Auth::attempt($user)){
+            if(Auth::user()->id_role == 1){
+                return redirect('Admin/dashboard');
+            }elseif(Auth::user()->id_role == 2){
+                return redirect('landing-page');
+            }
+        }
+        return redirect()->back()->withInput()->withErrors(['email' => 'Invalid email', 'password' => 'invalid password, please try again',]);
+        
+    }
+}

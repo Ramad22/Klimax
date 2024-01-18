@@ -16,7 +16,7 @@
     padding: 20px 0 20px 0;
     position: fixed;
     width: 100%;
-    margin-left: 580px;
+    left: 580px;
 }
 .logo img {
     margin-left: -600px;
@@ -31,7 +31,7 @@
 .navbar .box-navbar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: right;
 }
 
 .navbar .box-navbar .menu {
@@ -46,14 +46,15 @@
 
 .navbar.scrolling-active{
     background-color: 001a33;
+    /* display: absolute; */
+    /* right: 580px; */
+
 }
 
 .navbar .box-navbar .menu li {
     text-align: right;
     line-height: 2;
     margin-left: 12px;
-    float: right;
-    
 }
 
 
@@ -62,12 +63,12 @@
     text-decoration: none;
     color: aliceblue;
     padding: 0px;
-    
 }
 
 .navbar .box-navbar .menu li a:hover{
     background-color:darkcyan;
     transition: all 0.3s ease;
+    padding: 10px;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     -ms-transition: all.3s;
@@ -77,6 +78,8 @@
     display: none;
     color: aliceblue;
     font-size: 24px;
+    
+    
 }
 .hero{
     width: 100%;
@@ -140,8 +143,10 @@
 @media screen and (max-width: 990px) {
     .menu-bar{
         display: flex;
-        text-align: left;
-        margin-left: 10px;
+        justify-content: flex-end;
+        /* margin-left: 265px; */
+        padding: 15px;
+        max-width: 100%;
     }
     .hero .box-hero .box:nth-child(1) button {
         width: 100px;
@@ -250,7 +255,13 @@
 .lokasi iframe  {
     float: center;
     margin-left: 250px;
-    margin-top: 1%;
+    margin-top: 1%; 
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+    color:aliceblue;
 }
 
 
