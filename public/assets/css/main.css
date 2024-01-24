@@ -3,23 +3,23 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    /* font-family: "Poppins", sans-serif; */
     scroll-behavior: smooth;
 }
-/* header{
+/* .header{
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment;
+    
 } */
 .navbar {
-    padding: 20px 0 20px 0;
+    padding: 25px 0 25px 0;
     position: fixed;
     width: 100%;
-    left: 580px;
+    /* left: 580px; */
 }
 .logo img {
-    margin-left: -600px;
+    margin-left: -30px;
     border: none;
 }
 
@@ -41,6 +41,8 @@
     list-style: none;
     margin: auto;
     list-style-type: none;
+    margin-left: 555px;
+    
     
 }
 
@@ -52,9 +54,9 @@
 }
 
 .navbar .box-navbar .menu li {
-    text-align: right;
+    /* text-align: right; */
     line-height: 2;
-    margin-left: 12px;
+    /* margin-left: 12px; */
 }
 
 
@@ -66,9 +68,9 @@
 }
 
 .navbar .box-navbar .menu li a:hover{
-    background-color:darkcyan;
+    background-color: #3498db;
     transition: all 0.3s ease;
-    padding: 10px;
+    padding: 15px;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     -ms-transition: all.3s;
@@ -144,9 +146,9 @@
     .menu-bar{
         display: flex;
         justify-content: flex-end;
-        /* margin-left: 265px; */
         padding: 15px;
         max-width: 100%;
+        margin-left: 189px;
     }
     .hero .box-hero .box:nth-child(1) button {
         width: 100px;
@@ -157,6 +159,7 @@
         height: 70px;
         margin-right: 100%;
         border: none;
+        background-color: none;
     }
     
     .navbar .box-navbar .menu{   
@@ -254,7 +257,7 @@
 }
 .lokasi iframe  {
     float: center;
-    margin-left: 250px;
+    margin-left: 150px;
     margin-top: 1%; 
 }
 
@@ -262,6 +265,45 @@ footer {
     padding: 20px;
     text-align: center;
     color:aliceblue;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    border: none;
+}
+
+
+.dropdown .dropbtn {
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: grey;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #3498db;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 
 

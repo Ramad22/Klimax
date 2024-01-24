@@ -21,7 +21,7 @@ class SigninController extends Controller
     {
         $user = User::create([
             "name"=> $request->name,
-            "email"=> $request->email,
+            "no_hp"=> $request->no_hp,
             "id_role"=> $request->id_role,
             "password"=> bcrypt($request->password),
         ]);
@@ -34,7 +34,7 @@ class SigninController extends Controller
     public function progresLogin(Request $request)
     {
         $user = [
-            'email'=> $request->email,
+            'no_hp'=> $request->no_hp,
             // 'email_veripied_at'=>$request->email_verified_at,
             'password'=>$request->password,
         ];
@@ -45,7 +45,13 @@ class SigninController extends Controller
                 return redirect('landing-page');
             }
         }
-        return redirect()->back()->withInput()->withErrors(['email' => 'Invalid email', 'password' => 'invalid password, please try again',]);
+        return redirect()->back()->withInput()->withErrors(['no_hp' => 'Invalid no hp', 'password' => 'invalid password, please try again',]);
         
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('sign-in');
     }
 }

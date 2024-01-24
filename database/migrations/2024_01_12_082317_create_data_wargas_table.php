@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('data_wargas', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_warga');
             $table->bigInteger('nik')->unique(); 
             $table->string('nama_warga');
             $table->string('tempat_lahir');
@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('blok');
             $table->string('status');
             $table->string('pekerjaan');
+            $table->foreign('nama_warga')->references('id_nama_warga')->on('jadwals');
             $table->timestamps();
         });
     }

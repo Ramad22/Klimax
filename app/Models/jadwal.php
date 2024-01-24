@@ -9,9 +9,10 @@ class jadwal extends Model
 {
     use HasFactory;
 
+    protected $table = 'jadwals';
     protected $fillable = ['id_nama_warga', 'hari','no_hp'];
 
     public function data_warga(){
-        return $this->belongsTo(data_warga::class, 'id_nama_warga');
+        return $this->belongsTo(data_warga::class, 'nama_warga', 'nama_warga');
     }
 }

@@ -18,4 +18,8 @@ class AdminController extends Controller
     {
         return view("Admin/jadwal-ronda");
     }
+    public function jadwalPengguna()
+    {
+        return view("Admin/data-pengguna");
+    }
 }

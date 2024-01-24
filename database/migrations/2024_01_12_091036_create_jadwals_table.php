@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('jadwals', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_nama_warga');
-            $table->string('hari');
+            $table->id('id_jadwal');
+            $table->string('nama_warga');
+            $table->enum('hari', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Ahad']);
             $table->string('no_hp');
-            $table->foreign('id_nama_warga')->references('id')->on('data_warga');
+            $table->foreign('nama_warga')->references('nama_warga')->on('data_wargas')->onDelete('cascade');
             $table->timestamps();
         });
     }

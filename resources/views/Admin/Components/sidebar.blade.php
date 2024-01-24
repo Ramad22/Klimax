@@ -10,15 +10,17 @@
             </div>
         </div>
         <div class="ms-3">
-            <h6 class="mb-0"></h6>
-            <span style="text-transform: capitalize;"></span>
+            <h6 class="mb-0">{{ Auth::user()->name}}</h6>
+            <span style="text-transform: capitalize;">{{ Auth::user()->roles->role}}<span>
         </div>
     </div>
     <div class="navbar-nav w-100">
-        <a href="/Admin/index" class="nav-item nav-link  {{ \Route::is('Admin/dashboard') ? 'active' : ''}} "><i
+        <a href="{{ route('Admin/dashboard')}}" class="nav-item nav-link  {{ \Route::is('Admin/dashboard') ? 'active' : ''}} "><i
                 class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-        <a href="{{ route('Admin/data-warga') }}" class="nav-item nav-link {{ \Route::is('Admin/data-warga') ? 'active' : ''}}"><i
-                class="bi bi-folder-plus me-2"></i>Data Warga</a>
+                <a href="{{ route('Admin/data-warga') }}" class="nav-item nav-link {{ \Route::is('Admin/data-warga') ? 'active' : ''}}"><i
+                    class="bi bi-person-square me-2"></i>Data Warga</a>
+                    <a href="{{ route('Admin/data-pengguna') }}" class="nav-item nav-link {{ \Route::is('Admin/data-pengguna') ? 'active' : ''}}"><i
+                            class="bi bi-people me-2"></i>Data Pengguna</a>
         <a href="{{ route('Admin/jadwal-ronda')}}" class="nav-item nav-link {{ \Route::is('Admin/jadwal-ronda') ? 'active' : ''}}"><i
                 class="bi bi-check-circle me-1"></i>Jadwal Ronda</a>
         {{--  <a href="{{ route('Admin.manajemen-report') }}" class="nav-item nav-link {{ \Route::is('') ? 'active' : ''}}"><i

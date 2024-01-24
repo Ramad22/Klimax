@@ -13,7 +13,7 @@
 
   <style>
     body {
-      margin-top: -30px;
+      margin-top: -50px;
       background-color: #f8f9fa;
     }
     .login-container {
@@ -24,7 +24,7 @@
     .custom{
         color: ;
         background-color: #001a33;
-        height: 520px;
+        height: 560px;
         
     }
     .input-hp{
@@ -41,7 +41,6 @@
         padding: 3%;
         text-align: center;
         margin: 6% auto;
-        margin-top: 6% auto;
         display: block;
     }
     .img{
@@ -68,9 +67,9 @@
       <form action="/progresLogin" method="POST">
         @csrf
         <div class="form-group mb-6">
-          <label style="color: white; font-size: 12px; margin-bottom: 60px; " class="" for="">Email</label>
-          <input type="text" class="form-control mb-6 input-hp" id="" placeholder="Masukkan email" name="email" required>
-          @error('email')
+          <label style="color: white; font-size: 12px; margin-bottom: 60px; " class="" for="">No Hp</label>
+          <input type="number" class="form-control mb-6 input-hp" id="" placeholder="Masukkan No Hp" name="no_hp" required>
+          @error('no_hp')
               <div class="error"> {{$message}} </div>
           @enderror
         </div>
@@ -83,7 +82,7 @@
         </div>
         <div style="display: flex; justify-content: ; flex-direction: column; align-items: ;">
           <a style="margin-bottom: 0px; font-size: 12px; color: white;" href="#" class="text-right">Reset Password</a>
-          <button style="margin-top: 1%;" type="submit" class="btn btn-primary submit ">Masuk</button>
+          <button style="margin-top: 4%;" type="submit" class="btn btn-primary submit ">Masuk</button>
         </div>      
       </form>
     </div>

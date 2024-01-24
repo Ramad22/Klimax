@@ -11,7 +11,7 @@
     Tambah
 </button>
 </div>
-<h6 class="fw-bold py-3 mb-6 ms-3"><span class="text-muted fw-light"></span>Jadwal Ronda</h6>
+<h6 class="fw-bold py-3 mb-6 ms-3"><span class="text-muted fw-light"></span>Data Pengguna</h6>
 
 
 <!-- Modal -->
@@ -19,18 +19,26 @@
     <div class="modal-dialog ">
         <div class="modal-content">
             <div class="text-center mt-4">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Jadwal Ronda</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Pengguna</h5>
     </div>
     <div class="modal-body">
         <form action="/storeTarget" method="POST">
             @csrf
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="yourTargets" placeholder="your targets" name="your_target">
-                <label for="yourTargets">Hari</label>
+                <input type="text" class="form-control" id="" placeholder="" name="name">
+                <label for="">Nama Warga</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="howLong" placeholder="How long" name="how_long">
-                <label for="howLong">Nama Warga</label>
+                <input type="number" class="form-control" id="" placeholder="" name="no_hp">
+                <label for="">No Hp</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="endsOn" placeholder="ends on" name="password">
+                <label for="">Password</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="endsOn" placeholder="ends on" name="password">
+                <label for="">Konfirmasi Password</label>
             </div>
         </div>
         <div class="modal-footer">
@@ -51,8 +59,9 @@
                 <thead>
                     <tr>
                         <th scope="col" class="text-center">#</th>
-                        <th scope="col" class="text-center">Hari</th>
-                        <th colspan="0" scope="col" class="text-center">Nama Warga</th>
+                        <th scope="col" class="text-center">Nama Warga</th>
+                        <th scope="col" class="text-center">No Hp</th>
+                        <th scope="col" class="text-center">Password</th>
                         <th scope="col" class="text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -60,8 +69,9 @@
                     <tr>
                         {{--  @foreach ($target as $index => $t)  --}}
                         <td class="text-center">1</td>
-                        <td class="text-center">Senin</td>
                         <td class="text-center">Gilang</td>
+                        <td class="text-center">No Hp</td>
+                        <td class="text-center">Password</td>
                         <form action="" method="GET" onsubmit="return confirm ('Are you sure want to delete this ?')">
                             @csrf
                             @method('DELETE')
