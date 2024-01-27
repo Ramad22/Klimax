@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('no_hp')->unique();
+            $table->string('blok');
             // $table->timestamp('email_verified_at')->nullable();
             $table->unsignedBigInteger('id_role')->nullable();
             $table->string('password');

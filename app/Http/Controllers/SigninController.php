@@ -38,7 +38,8 @@ class SigninController extends Controller
             // 'email_veripied_at'=>$request->email_verified_at,
             'password'=>$request->password,
         ];
-        if(Auth::attempt($user)){
+        $remember = request()->filled('remember');
+        if(Auth::attempt($user, $remember)){
             if(Auth::user()->id_role == 1){
                 return redirect('Admin/dashboard');
             }elseif(Auth::user()->id_role == 2){

@@ -20,7 +20,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 */
 
 Route::get('/landing-page', [WargaController::class,'landingPage'])->middleware('auth');
-Route::get('/profile', [WargaController::class,'profile']);
+Route::get('/profile', [WargaController::class,'profile'])->middleware('auth');
 Route::post('sendWa', [WargaController::class, 'store'])->name('send-wa');
 
 Route::get('/sign-in', [SigninController::class,'sign_in'])->name('sign-in')->middleware('guest');

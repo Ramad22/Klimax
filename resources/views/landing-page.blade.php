@@ -83,7 +83,7 @@
                             <td>{{ $hari }}</td>
                             @foreach ($dataHari as $item)
                             <td>
-                                Bp.{{ $item->nama_warga }}
+                                Bp.{{ $item->dataWarga->nama_warga }}
                                 @if (date('N') == ($loop->parent->index % 7) + 1)
                                     <a style="font-size: 14px; background-color: transparent; text-decoration: none;" href="https://wa.me/{{ $item->no_hp }}/" class="fa fa-phone"></a>
                                 {{--  @else
@@ -103,35 +103,47 @@
 
     <div class="laporan" id="laporan">
         <div class="container">
-            <h1>Lapokan Kejadian</h1>
-            {{--  <center>
-                <form action="{{ route('send-wa')}}" method="POST">
-                @csrf
-                <div class="form-group col-sm-3 d-flex align-items-center mt-4">
-                    <label style="color: white" class="mr-2" for="">TKP <small>(Tempat Kejadian
-                        Perkara)</small></label>
-                        <input type="text" name="pesan" id="" class="form-control" placeholder="contoh b.02">
-                    </div>
-                    <label style="color: white" class="mr-2" for="">No Hp</label>
-                        <input type="text" name="no_wa" id="" class="form-control" placeholder="contoh b.02">
-                    </div>
-                </form>
-            </div>
-        </div>
-    </center>  --}}
-    <center> 
-        <a href="{{ asset('assets/php/app.php')}}" class="btn btn-primary mt-3">Laporkan</a>
-    </center>
+            <h1>Laporkan Kejadian</h1>
+            <p class="informasi">Di RT 03 RW 14, sejumlah kejadian kritis perlu segera dilaporkan.<br> Mulai dari pencurian, kegiatan ilegal, hingga gangguan lingkungan. Pelaporan mendesak agar keamanan dan kesejahteraan warga terjamin.</p>
+            <center>   
+                <button class="btn btn-primary button-laporan" onclick="confirmLaporkan()">Laporkan</button>
+                <script>
+                    function confirmLaporkan() {
+                        swal({
+                          title: "Apakah anda yakin?",
+                          text: "Di RT 03 RW 14 terdapat peristiwa yang membahayakan!",
+                          icon: "warning",
+                          buttons: true,
+                          dangerMode: true,
+                        })
+                        .then((willReport) => {
+                          if (willReport) {
+                            swal("Terimakasih anda telah melaporkan kejadian", {
+                              icon: "success",
+                            }).then(() => {
+                              window.location.href = "{{ asset('assets/php/app.php')}}";
+                            });
+                          } else {
+                            swal("Pelaporan berhasil dibatalkan");
+                          }
+                        });
+                      }
+                </script>
+            </center>
     <br>
     <br>
 
     <div class="lokasi" id="lokasi">
         <div class="container">
-            <h1>Lokasi</h1>
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.1028683133845!2d107.54989447410804!3d-7.016804168733393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ed007d269697%3A0xd68cacd5a218fa4a!2sPos%20ronda!5e1!3m2!1sid!2sid!4v1705817964976!5m2!1sid!2sid"
-                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <h1 class="mb-3">Lokasi</h1>
+            <div class="map-wrapper">
+                <center>
+                    <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.1028683133845!2d107.54989447410804!3d-7.016804168733393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ed007d269697%3A0xd68cacd5a218fa4a!2sPos%20ronda!5e1!3m2!1sid!2sid!4v1705817964976!5m2!1sid!2sid"
+                    width="600px" height="500px" style=";" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" class="lok"></iframe>
+                </center>
+            </div>
         </div>
     </div>
 
@@ -146,5 +158,23 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 
 </html>
+ {{--  <center>
+                <form action="{{ route('send-wa')}}" method="POST">
+                @csrf
+                <div class="form-group col-sm-3 d-flex align-items-center mt-4">
+                    <label style="color: white" class="mr-2" for="">TKP <small>(Tempat Kejadian
+                        Perkara)</small></label>
+                        <input type="text" name="pesan" id="" class="form-control" placeholder="contoh b.02">
+                    </div>
+                    <label style="color: white" class="mr-2" for="">No Hp</label>
+                        <input type="text" name="no_wa" id="" class="form-control" placeholder="contoh b.02">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </center>  --}}

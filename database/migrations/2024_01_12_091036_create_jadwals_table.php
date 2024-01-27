@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('jadwals', function (Blueprint $table) {
             $table->id('id_jadwal');
-            $table->string('nama_warga');
+            $table->unsignedBigInteger('id_warga');
             $table->enum('hari', ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Ahad']);
+            $table->string('nama_warga');
             $table->string('no_hp');
-            $table->foreign('nama_warga')->references('nama_warga')->on('data_wargas')->onDelete('cascade');
-            $table->timestamps();
+            $table->foreign('id_warga')->references('id_warga')->references('data_wargas');
+            // $table->string('no_hp');
+            // $table->foreign('nama_warga')->references('nama_warga')->on('data_wargas')->onDelete('cascade');
         });
     }
 

@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             "name"=> "Gilang",
             "no_hp"=>"628996982837",
             "password"=> bcrypt("123321"),
+            "blok"=> "b 02",
             "id_role"=> "1",
             "remember_token"=> str::random(5),
         ]);
@@ -25,6 +26,7 @@ class UserSeeder extends Seeder
             "name"=> "ramad",
             "no_hp"=>"6289656034973",
             "password"=> bcrypt("123456"),
+            "blok"=> "b 03",
             "id_role"=> "2",
             "remember_token"=> str::random(5),
         ]);

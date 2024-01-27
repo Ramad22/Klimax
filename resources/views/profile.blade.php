@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <!-- Pastikan Anda sudah menyertakan Bootstrap jika ingin menggunakan styling Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- <link rel="stylesheet" href="path/to/bootstrap.css"> -->
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #001a33;
             margin: 0;
             padding: 0;
         }
@@ -46,6 +47,10 @@
             margin: 5px 0;
             color: #777;
         }
+        .back{
+            float: left;
+            margin-top: -30px;
+        }
     </style>
 </head>
 <body>
@@ -59,9 +64,11 @@
     </div>
     <hr>
     <h3>Alamat</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique urna quis nulla ullamcorper, a tincidunt mi facilisis. Fusce eget tempor justo. Fusce at justo in sem posuere venenatis. Donec ac nunc vitae leo malesuada tempus vel vel neque.</p>
+    <p style="text-transform: capitalize;">Kp Mekarsari RT 03 RW 14 Kecamatan Katapang Desa Gandasari Blok {{Auth::user()->blok}}</p><br>
+    <a href="/landing-page" class="btn btn-success back">Back</a>
     <!-- Tambahkan elemen HTML lainnya sesuai dengan kebutuhan profil Anda -->
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>

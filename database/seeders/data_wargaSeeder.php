@@ -23,6 +23,7 @@ class data_wargaSeeder extends Seeder
             'blok'=>'02',
             'status'=>'nikah',
             'pekerjaan'=>'as ',
+            'no_hp' => '62656034973',
 
         ]);
         data_warga::create([
@@ -35,6 +36,7 @@ class data_wargaSeeder extends Seeder
             'blok'=>'02',
             'status'=>'nikah',
             'pekerjaan'=>'as ',
+            'no_hp' => '6265603497',
 
         ]);
         data_warga::create([
@@ -47,6 +49,8 @@ class data_wargaSeeder extends Seeder
             'blok'=>'02',
             'status'=>'nikah',
             'pekerjaan'=>'as ',
+            'no_hp' => '6265603497',
+
 
         ]);
         data_warga::create([
@@ -59,6 +63,7 @@ class data_wargaSeeder extends Seeder
             'blok'=>'02',
             'status'=>'nikah',
             'pekerjaan'=>'as ',
+            'no_hp' => '626560349',
 
         ]);
         data_warga::create([
@@ -71,6 +76,7 @@ class data_wargaSeeder extends Seeder
             'blok'=>'02',
             'status'=>'nikah',
             'pekerjaan'=>'as ',
+            'no_hp' => '62656034973',
 
         ]);
         data_warga::create([

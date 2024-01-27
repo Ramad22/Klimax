@@ -22,7 +22,8 @@ return new class extends Migration
             $table->string('blok');
             $table->string('status');
             $table->string('pekerjaan');
-            $table->foreign('nama_warga')->references('id_nama_warga')->on('jadwals');
+            $table->string('no_hp')->unique();
+            $table->foreign('id_warga')->references('id_jadwal')->on('jadwals');
             $table->timestamps();
         });
     }

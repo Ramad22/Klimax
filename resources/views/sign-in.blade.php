@@ -24,7 +24,7 @@
     .custom{
         color: ;
         background-color: #001a33;
-        height: 560px;
+        height: 580px;
         
     }
     .input-hp{
@@ -67,21 +67,28 @@
       <form action="/progresLogin" method="POST">
         @csrf
         <div class="form-group mb-6">
-          <label style="color: white; font-size: 12px; margin-bottom: 60px; " class="" for="">No Hp</label>
+          <label style="color: white; font-size: 14px; margin-bottom: 60px; " class="" for="">No Hp</label>
           <input type="number" class="form-control mb-6 input-hp" id="" placeholder="Masukkan No Hp" name="no_hp" required>
           @error('no_hp')
               <div class="error"> {{$message}} </div>
           @enderror
         </div>
         <div class="form-group">
-          <label style="color: white; font-size: 12px; margin-buttom: 60px;" for="">Password</label>
+          <label style="color: white; font-size: 14px; margin-buttom: 60px;" for="">Password</label>
           <input type="password" class="form-control input-password" id="password" placeholder="Masukkan password" name="password" required>
           @error('password')
               <div class="error"> {{$message}} </div>
           @enderror
         </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+            <label style="color: #f8f9fa; font-size: 13px;" class="form-check-label" for="remember">
+                Remember Me
+            </label>
+        </div>
+      
         <div style="display: flex; justify-content: ; flex-direction: column; align-items: ;">
-          <a style="margin-bottom: 0px; font-size: 12px; color: white;" href="#" class="text-right">Reset Password</a>
+          <a style="margin-bottom: 0px; font-size: 13px; color: white;" href="#" class="text-right">Reset Password</a>
           <button style="margin-top: 4%;" type="submit" class="btn btn-primary submit ">Masuk</button>
         </div>      
       </form>

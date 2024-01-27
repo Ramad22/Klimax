@@ -12,7 +12,12 @@ class jadwal extends Model
     protected $table = 'jadwals';
     protected $fillable = ['id_nama_warga', 'hari','no_hp'];
 
-    public function data_warga(){
-        return $this->belongsTo(data_warga::class, 'nama_warga', 'nama_warga');
+    public function dataWarga(){
+        return $this->belongsTo(data_warga::class, 'id_warga', 'id_warga');
+    }
+
+    public function data_wargas()
+    {
+        return $this->belongsTo(data_warga::class, 'no_hp');
     }
 }

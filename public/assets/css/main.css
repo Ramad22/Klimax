@@ -1,10 +1,13 @@
 *{
-    background-color: #001a33;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     /* font-family: "Poppins", sans-serif; */
     scroll-behavior: smooth;
+}
+body{
+    background-color: #001a33;
+
 }
 /* .header{
     background-size: cover;
@@ -16,6 +19,8 @@
     padding: 25px 0 25px 0;
     position: fixed;
     width: 100%;
+    background-color: #001a33;
+
     /* left: 580px; */
 }
 .logo img {
@@ -42,15 +47,12 @@
     margin: auto;
     list-style-type: none;
     margin-left: 555px;
-    
-    
 }
 
 .navbar.scrolling-active{
     background-color: 001a33;
     /* display: absolute; */
     /* right: 580px; */
-
 }
 
 .navbar .box-navbar .menu li {
@@ -149,6 +151,7 @@
         padding: 15px;
         max-width: 100%;
         margin-left: 189px;
+
     }
     .hero .box-hero .box:nth-child(1) button {
         width: 100px;
@@ -185,6 +188,7 @@
         -moz-transition: all ease;
         -ms-transition: all ease;
         -o-transition: all ease;
+        background-color: #001a33;
     }
     .navbar .box-navbar .menu.menu-active{
         top: 80px;
@@ -253,11 +257,12 @@
     text-align: center;
     color: white;
     font-size: 30px;
+    padding-top: 0%;
 
 }
 .lokasi iframe  {
     float: center;
-    margin-left: 150px;
+    /* margin-left: 150px; */
     margin-top: 1%; 
 }
 
@@ -306,5 +311,21 @@ footer {
     display: block;
 }
 
+.informasi {
+    font-size: 17px;
+    font-style: oblique;
+    color: bisque;
+    padding-top: 2%;
+    text-align: center;
+}
+.button-laporan{
+    padding: 15px;
+    width: 100px;
+    margin-bottom: 100px;
+}
 
+/* .map-wrapper iframe{
+    width: 600px;
+    height: 500px;
+} */
 
