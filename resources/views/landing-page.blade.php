@@ -83,7 +83,7 @@
                             <td>{{ $hari }}</td>
                             @foreach ($dataHari as $item)
                             <td>
-                                Bp.{{ $item->dataWarga->nama_warga }}
+                                Bp.{{ $item->dataWarga->nama_warga}}
                                 @if (date('N') == ($loop->parent->index % 7) + 1)
                                     <a style="font-size: 14px; background-color: transparent; text-decoration: none;" href="https://wa.me/{{ $item->no_hp }}/" class="fa fa-phone"></a>
                                 {{--  @else

@@ -9,8 +9,9 @@ class data_warga extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id_warga';
     protected $table = 'data_wargas';
-    protected $fillable = ['nik', 'nama_warga', 'tempat_lahir', 'tgl_lahir', 'jenis_kelamin', 'alamat', 'blok', 'status', 'pekerjaan', 'no_hp'];
+    protected $fillable = ['nik', 'nama_warga', 'tempat_lahir', 'tanggal_lahir', 'jenis_kelamin', 'alamat', 'blok', 'status', 'pekerjaan', 'no_hp'];
 
     public function jadwal()
     {

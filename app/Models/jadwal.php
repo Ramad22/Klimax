@@ -10,7 +10,11 @@ class jadwal extends Model
     use HasFactory;
 
     protected $table = 'jadwals';
-    protected $fillable = ['id_nama_warga', 'hari','no_hp'];
+    protected $fillable = ['id_warga', 'hari','no_hp'];
+
+    protected $primaryKey = 'id_jadwal';
+
+    public $timestamps = false; 
 
     public function dataWarga(){
         return $this->belongsTo(data_warga::class, 'id_warga', 'id_warga');

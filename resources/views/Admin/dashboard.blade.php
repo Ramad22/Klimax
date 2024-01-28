@@ -6,32 +6,32 @@
                 <div class="row g-4">
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                          <a href='/Admin.recent-notes'><i class="fa fa-chart-pie fa-3x text-primary"></i></a>
+                          <a href='{{ route('Admin/data-warga')}}'><i class="fa fa-chart-pie fa-3x text-primary"></i></a>
                             <div class="ms-3">
-                                <p class="mb-2">Notes</p>
-                                <h6 class="mb-0">1</h6>
+                                <p class="mb-2">Data Warga</p>
+                                <h6 class="mb-0">{{$warga}}</h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                        <a href='/Admin.live-targets'><i class="fa fa-chart-bar fa-3x text-primary"></i></a> 
+                        <a href='{{ route('Admin/data-pengguna')}}'><i class="fa fa-chart-bar fa-3x text-primary"></i></a> 
                             <div class="ms-3">
-                                <p class="mb-2">Some Target</p>
-                                <h6 class="mb-0">2</h6>
+                                <p class="mb-2">Data Pengguna</p>
+                                <h6 class="mb-0">{{$user}}</h6>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="fa fa-chart-area fa-3x text-primary"></i>
+                           <a href="{{ route('Admin/jadwal-ronda')}}"><i class="fa fa-chart-area fa-3x text-primary"></i></a>
                             <div class="ms-3">
-                                <p class="mb-2">Histori</p>
-                                <h6 class="mb-0">3</h6>
+                                <p class="mb-2">Data Ronda</p>
+                                <h6 class="mb-0">{{$jadwal}}</h6>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6 col-xl-3">
+                    {{--  <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="fa fa-user fa-3x text-primary"></i>
                             <div class="ms-3">
@@ -39,7 +39,7 @@
                                 <h6 class="mb-0">1</h6>
                             </div>
                         </div>
-                    </div>
+                    </div>  --}}
                 </div>
             </div>
             <!-- Sale & Revenue End -->

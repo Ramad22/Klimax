@@ -1,30 +1,25 @@
 <?php
 $token = "dSqw92ByRd_VjG2WYjR-";
 
-// Membuat koneksi ke database (gantilah dengan kredensial database sesuai dengan pengaturan Anda)
 $mysqli = new mysqli("localhost", "root", "", "klimax");
 
-// Memeriksa koneksi
 if ($mysqli->connect_error) {
     die("Koneksi gagal: " . $mysqli->connect_error);
 }
 
-// Query untuk mengambil semua nomor telepon dari database
-$query = "SELECT no_hp FROM data_wargas";  // Anda mungkin perlu menyesuaikan query ini berdasarkan skema database Anda
+
+$query = "SELECT no_hp FROM data_wargas";  
 
 $result = $mysqli->query($query);
 
 if ($result) {
-    // Mengambil semua nomor telepon dari hasil query
     $phoneNumbers = [];
     while ($row = $result->fetch_assoc()) {
         $phoneNumbers[] = $row['no_hp'];
     }
 
-    // Menutup koneksi database
     $mysqli->close();
 
-    // Mengirim pesan ke setiap nomor telepon
     foreach ($phoneNumbers as $target) {
         $curl = curl_init();
 
@@ -39,7 +34,7 @@ if ($result) {
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array(
                 'target' => $target,
-                'message' => 'Ada bahaya di rt 03 mohon siap siaga di depan rumah anda',
+                'message' => 'Ada bahaya di rt 03',
                 'delay' => '2',
             ),
             CURLOPT_HTTPHEADER => array(
@@ -54,12 +49,28 @@ if ($result) {
         curl_close($curl);
 
         // Menangani respons sesuai kebutuhan
-        echo $response;
+        if ($response === false) {
+            // Menangani kesalahan cURL
+            die("Error during cURL request: " . curl_error($curl));
+        } else {
+            // Menampilkan respons
+            echo $response;
 
-sleep(4);
-if ($response !== false) {
+            // Menangani respons API sesuai kebutuhan
+            if (strpos($response, 'message sent successfully') !== false) {
+                // Jika pesan terkirim dengan sukses
+                echo "Pesan berhasil dikirim ke nomor: $target\n";
+            } else {
+                // Jika terjadi kesalahan saat mengirim pesan
+                echo "Error: Failed to send message to nomor: $target\n";
+            }
+        }
+    }
+    sleep(4);
     header("Location: http://127.0.0.1:8000/landing-page");
     exit();
+} else {
+    // Menangani kesalahan query database
+    die("Error: " . $mysqli->error);
 }
-    }
-}
+?>
