@@ -106,29 +106,51 @@
             <h1>Laporkan Kejadian</h1>
             <p class="informasi">Di RT 03 RW 14, sejumlah kejadian kritis perlu segera dilaporkan.<br> Mulai dari pencurian, kegiatan ilegal, hingga gangguan lingkungan. Pelaporan mendesak agar keamanan dan kesejahteraan warga terjamin.</p>
             <center>   
-                <button class="btn btn-primary button-laporan" onclick="confirmLaporkan()">Laporkan</button>
-                <script>
+                <form action="{{ route('send-wa')}}" method="POST">
+                    @csrf
+                    <button class="btn btn-primary button-laporan" type="submit" >Laporkan</button>
+                </form>
+
+                {{--  <script>
                     function confirmLaporkan() {
                         swal({
-                          title: "Apakah anda yakin?",
-                          text: "Di RT 03 RW 14 terdapat peristiwa yang membahayakan!",
-                          icon: "warning",
-                          buttons: true,
-                          dangerMode: true,
+                            title: "Apakah anda yakin?",
+                            text: "Di RT 03 RW 14 terdapat peristiwa yang membahayakan!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
                         })
                         .then((willReport) => {
-                          if (willReport) {
-                            swal("Terimakasih anda telah melaporkan kejadian", {
-                              icon: "success",
-                            }).then(() => {
-                              window.location.href = "{{ asset('assets/php/app.php')}}";
-                            });
-                          } else {
-                            swal("Pelaporan berhasil dibatalkan");
-                          }
+                            if (willReport) {
+                                swal("Terimakasih anda telah melaporkan kejadian", {
+                                    icon: "success",
+                                }).then(() => {
+                                    // Make an AJAX request using POST method
+                                    $.ajax({
+                                        url: "{{ route('send-wa') }}",
+                                        type: "POST",
+                                        data: {
+                                            // Add any data you want to send with the request
+                                            // For example: key1: value1, key2: value2
+                                        },
+                                        success: function(response) {
+                                            // Handle success if needed
+                                            console.log(response);
+                                        },
+                                        error: function(error) {
+                                            // Handle error if needed
+                                            console.log(error);
+                                        }
+                                    });
+                                });
+                            } else {
+                                swal("Pelaporan berhasil dibatalkan");
+                            }
                         });
-                      }
-                </script>
+                    }
+                </script>  --}}
+                
+                {{--  onclick="confirmLaporkan()"  --}}
             </center>
     <br>
     <br>
@@ -160,6 +182,8 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 
 
 </html>

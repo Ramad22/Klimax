@@ -6,6 +6,9 @@ use App\Models\data_warga;
 use App\Models\jadwal;
 use App\Traits\WablasTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 
 class WargaController extends Controller
 {
@@ -29,15 +32,30 @@ class WargaController extends Controller
 
     public function store()
     {
-        $kumpulan_data = [];
-        $data['phone'] = request('no_wa');
-        $data['message'] = request('pesan');
-        $data['secret'] = false;
-        $data['retry'] = false;
-        $data['isGroup'] = false;
-        array_push($kumpulan_data, $data);
-        WablasTrait::sendText($kumpulan_data);
-        return redirect()->back();
+    $token = "dSqw92ByRd_VjG2WYjR-";
+
+    try {
+        $user = Auth::user();
+        $userBlok = $user->blok;
+        $phoneNumbers = DB::table('data_wargas')->pluck('no_hp');
+
+        foreach ($phoneNumbers as $target) {
+            $response = Http::withHeaders([
+                'Authorization' => $token,
+            ])->post('https://api.fonnte.com/send', [
+                'target' => $target,
+                'message' => "Ada bahaya baru di rt 03 $userBlok",
+                'delay' => '2',
+            ]);
+            $responseData = $response->json();
+        }
+        sleep(4);
+
+        return redirect('landing-page');
+    } catch (\Exception $e) {
+        return "Error: " . $e->getMessage();
     }
+    }
+
     
 }
