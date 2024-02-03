@@ -17,7 +17,7 @@ class jadwal extends Model
     public $timestamps = false; 
 
     public function dataWarga(){
-        return $this->belongsTo(data_warga::class, 'id_warga', 'id_warga');
+        return $this->belongsTo(data_warga::class, 'id_warga', 'id_warga', 'id_no_hp');
     }
 
     public function data_wargas()

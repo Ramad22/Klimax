@@ -19,11 +19,11 @@ return new class extends Migration
             $table->date('tanggal_lahir'); 
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']); 
             $table->string('alamat');
-            $table->string('blok');
+            $table->string('blok', 20);
             $table->string('status');
             $table->string('pekerjaan');
-            $table->string('no_hp')->unique();
-            $table->foreign('id_warga')->references('id_jadwal')->on('jadwals');
+            $table->string('no_hp', 20)->unique();
+            // $table->foreign('id_warga')->references('id_jadwal')->on('jadwals');
             $table->timestamps();
         });
     }

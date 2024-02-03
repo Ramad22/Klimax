@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\data_warga;
 use App\Models\jadwal;
+use App\Models\Laporan;
 use App\Traits\WablasTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,25 +31,33 @@ class WargaController extends Controller
         return view("profile");
     }
 
-    public function store()
+    public function store(Request $request)
     {
     $token = "dSqw92ByRd_VjG2WYjR-";
 
     try {
         $user = Auth::user();
         $userBlok = $user->blok;
+        $idUser = $user->id;
         $phoneNumbers = DB::table('data_wargas')->pluck('no_hp');
+        $selectedOption = $request->perkara;
+
 
         foreach ($phoneNumbers as $target) {
+            $message = "Terdapat $selectedOption Di RT 03 RW 14 Pada Nomer Rumah $userBlok. ( Mohon Kepada Setiap Warga Selalu Waspada ! ). ";
             $response = Http::withHeaders([
                 'Authorization' => $token,
             ])->post('https://api.fonnte.com/send', [
                 'target' => $target,
-                'message' => "Ada bahaya baru di rt 03 $userBlok",
+                'message' => "$message",
                 'delay' => '2',
             ]);
             $responseData = $response->json();
         }
+        Laporan::create([
+            'id_user'=>$idUser,
+            'perkara'=>$request->perkara,
+        ]);
         sleep(4);
 
         return redirect('landing-page');

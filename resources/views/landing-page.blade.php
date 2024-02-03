@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Landing-Page</title>
@@ -11,7 +12,7 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,400&display=swap"
@@ -52,21 +53,29 @@
                     <div class="box">
                         <h1>Keamanan Lingkungan</br> Maxsimal </h1>
                         <p>RT 03 RW 14 menjadi benteng solid dalam menciptakan lingkungan yang aman.</p>
-                        <button>Laporkan</button>
+                        <button id="" onclick="pindah()">Laporkan</button>
+                        <script>
+                            function pindah() {
+                                document.getElementById('laporan').scrollIntoView({
+                                    behavior: 'smooth'
+                                });
+                            }
+                        </script>
                     </div>
 
                     <div class="box">
                         <img src="{{ asset('assets/img/jadwal_icon.png') }}" alt="" width=""
                             height="">
                     </div>
+                    {{--  <br><br><br>  --}}
+                    <div class="mb-0" id="jadwal"></div>
                 </div>
             </div>
         </div>
     </header>
 
 
-
-    <div class="jadwal" id="jadwal">
+    <div class="jadwal">
         <div class="container">
             <div class="table">
                 <h1>Jadwal Ronda</h1>
@@ -74,61 +83,63 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Hari</th>
-                            <th colspan="22">Nama Warga</th>
+                            <th class="text-center">Hari</th>
+                            <th colspan="22" class="text-center">Nama Warga</th>
                         </tr>
                         @foreach ($jadwal as $hari => $dataHari)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $hari }}</td>
-                            @foreach ($dataHari as $item)
-                            <td>
-                                Bp.{{ $item->dataWarga->nama_warga}}
-                                @if (date('N') == ($loop->parent->index % 7) + 1)
-                                    <a style="font-size: 14px; background-color: transparent; text-decoration: none;" href="https://wa.me/{{ $item->no_hp }}/" class="fa fa-phone"></a>
-                                {{--  @else
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $hari }}</td>
+                                @foreach ($dataHari as $item)
+                                    <td>
+                                        Bp.{{ $item->dataWarga->nama_warga }}
+                                        @if (date('N') == ($loop->parent->index % 7) + 1)
+                                            <a style="font-size: 14px; background-color: transparent; text-decoration: none;"
+                                                href="https://wa.me/{{ $item->dataWarga->no_hp }}/" class="fa fa-phone"></a>
+                                            {{--  @else
                                    <a style="font-size: 14px; background-color: transparent; text-decoration: none;" href="https://wa.me/{{ $item->no_hp }}/" class="fa fa-envelope"></a>  --}}
-                                @endif
-                            </td>
-                            
-                            @endforeach
-                        </tr>
-                    @endforeach
-                    </tbody>
+                                        @endif
+                                    </td>
+                                @endforeach
+                            </tr>
+                        @endforeach
+                        </tbody>
                 </table>
             </div>
+            <div id="laporan"></div>
         </div>
     </div>
-
-
-    <div class="laporan" id="laporan">
+    
+    
+    <div class="laporan">
         <div class="container">
             <h1>Laporkan Kejadian</h1>
-            <p class="informasi">Di RT 03 RW 14, sejumlah kejadian kritis perlu segera dilaporkan.<br> Mulai dari pencurian, kegiatan ilegal, hingga gangguan lingkungan. Pelaporan mendesak agar keamanan dan kesejahteraan warga terjamin.</p>
-            <center>   
-                <form action="{{ route('send-wa')}}" method="POST">
-                    @csrf
-                    <button class="btn btn-primary button-laporan" type="submit" >Laporkan</button>
-                </form>
-
+            <p class="informasi">Di RT 03 RW 14, sejumlah kejadian kritis perlu segera dilaporkan.<br> Mulai dari
+                pencurian, kegiatan ilegal, hingga gangguan lingkungan. Pelaporan mendesak agar keamanan dan
+                kesejahteraan warga terjamin.</p>
+                <center>
+                {{--  <button class="btn btn-primary button-laporan" type="button" onclick="confirmLaporkan()" >Laporkan</button>  --}}
                 {{--  <script>
-                    function confirmLaporkan() {
-                        swal({
-                            title: "Apakah anda yakin?",
-                            text: "Di RT 03 RW 14 terdapat peristiwa yang membahayakan!",
-                            icon: "warning",
-                            buttons: true,
-                            dangerMode: true,
-                        })
-                        .then((willReport) => {
-                            if (willReport) {
-                                swal("Terimakasih anda telah melaporkan kejadian", {
-                                    icon: "success",
-                                }).then(() => {
-                                    // Make an AJAX request using POST method
+                function confirmLaporkan() {
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                                icon: "warning",
+                                buttons: true,
+                                dangerMode: true,
+                            })
+                            .then((willDelete) => {
+                                if (willDelete) {
+                                    // Get the CSRF token from the meta tag
+                                    const csrfToken = $('meta[name="csrf-token"]').attr('content');
+                    
+                                    // Make an AJAX request using POST method with CSRF token
                                     $.ajax({
-                                        url: "{{ route('send-wa') }}",
+                                        url: "/send-wa",
                                         type: "POST",
+                                        headers: {
+                                            'X-CSRF-TOKEN': csrfToken
+                                        },
                                         data: {
                                             // Add any data you want to send with the request
                                             // For example: key1: value1, key2: value2
@@ -136,44 +147,87 @@
                                         success: function(response) {
                                             // Handle success if needed
                                             console.log(response);
+                    
+                                            // Redirect to the /send-wa route after successful AJAX request
+                                            window.location.href = "/send-wa";
                                         },
-                                        error: function(error) {
+                                        error: function(xhr, status, error) {
                                             // Handle error if needed
-                                            console.log(error);
+                                            console.log(xhr.responseText);
+                    
+                                            // Show an error message using SweetAlert with the actual error message
+                                            swal("Error", "Failed to process the request. Please try again. Error: " + xhr.responseText, "error");
                                         }
                                     });
-                                });
-                            } else {
-                                swal("Pelaporan berhasil dibatalkan");
-                            }
-                        });
-                    }
-                </script>  --}}
-                
-                {{--  onclick="confirmLaporkan()"  --}}
+                                } else {
+                                    swal("Your imaginary file is safe!");
+                                }
+                            });
+                        }
+                    </script>  --}}
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary button-laporan" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Laporkan
+                    <div id="lokasi"></div>
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h6 class="modal-title fs-5" id="exampleModalLabel"
+                                    style="color: #001a33; font-size: 5px;">Pelaporan Perkara</h6>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h5>
+                                    {{--  Apakah benar di RT 03 terdapat perkara yang membahayakan ?  --}}
+                                </h5>
+                                <form action="{{ route('send-wa') }}" method="POST">
+                                    @csrf
+                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="perkara">
+                                        <option selected>Pilih Perkara Apa Terjadi</option>
+                                        <option value="Kemalingan">Kemalingan</option>
+                                        <option value="Kebakaran">Kebakaran</option>
+                                        <option value="Kerusakan">Kerusakan</option>
+                                      </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-primary">Lapor</button>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+
+
             </center>
-    <br>
-    <br>
+            <br><br><br><br><br>
 
-    <div class="lokasi" id="lokasi">
-        <div class="container">
-            <h1 class="mb-3">Lokasi</h1>
-            <div class="map-wrapper">
-                <center>
-                    <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.1028683133845!2d107.54989447410804!3d-7.016804168733393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ed007d269697%3A0xd68cacd5a218fa4a!2sPos%20ronda!5e1!3m2!1sid!2sid!4v1705817964976!5m2!1sid!2sid"
-                    width="600px" height="500px" style=";" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade" class="lok"></iframe>
-                </center>
+            <div class="lokasi">
+                <div class="container">
+                    <h1 class="mb-3">Lokasi</h1>
+                    <div class="map-wrapper">
+                        <center>
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.1028683133845!2d107.54989447410804!3d-7.016804168733393!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ed007d269697%3A0xd68cacd5a218fa4a!2sPos%20ronda!5e1!3m2!1sid!2sid!4v1705817964976!5m2!1sid!2sid"
+                                width="600px" height="500px" style=";" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade" class="lok"></iframe>
+                        </center>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
 
 
-    <footer>
-        <p>&copy; PKK</p>
-    </footer>
+            <footer>
+                <p>&copy; PKK</p>
+            </footer>
 </body>
 <script src="{{ asset('assets/js/landing.js') }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -187,7 +241,7 @@
 
 
 </html>
- {{--  <center>
+{{--  <center>
                 <form action="{{ route('send-wa')}}" method="POST">
                 @csrf
                 <div class="form-group col-sm-3 d-flex align-items-center mt-4">
