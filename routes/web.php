@@ -56,6 +56,8 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     Route::get('/hapusUser/{id}', [AdminController::class, 'deleteUser'])->name('hapusUser');
     Route::post('/editUser/{id}', [AdminController::class, 'updateUser'])->name('editUser');
 
+    Route::get('/Admin/data-pelapor', [AdminController::class, 'dataPelapor'])->name('Admin/data-pelapor')->middleware('auth');
+
 // });
 
 

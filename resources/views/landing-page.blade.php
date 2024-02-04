@@ -46,6 +46,19 @@
                 </div>
             </div>
         </div>
+        {{--  <div class="call-logo" onclick="toggleEmergencyCall()">Call</div>
+
+ 
+        <div class="emergency-call">
+            <a href="tel:110">Call Police</a>
+            <a href="tel:113">Call Fire Department</a>
+        </div>
+        <script>
+            function toggleEmergencyCall() {
+      
+                document.querySelector('.call-logo').classList.toggle('active');
+            }
+        </script>  --}}
 
         <div class="hero" id="hero">
             <div class="container">

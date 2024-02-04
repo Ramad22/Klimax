@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\data_warga;
 use App\Models\jadwal;
+use App\Models\Laporan;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -130,5 +131,11 @@ class AdminController extends Controller
         $jadawl->no_hp = $request->input('no_hp');
         $jadawl->update();
         return back();
+    }
+
+    public function dataPelapor()
+    {   
+        $lapor = Laporan::all();
+        return view("Admin/data-pelapor", compact('lapor'));
     }
 }

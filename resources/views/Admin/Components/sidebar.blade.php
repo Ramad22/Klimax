@@ -23,6 +23,8 @@
                             class="bi bi-people me-2"></i>Data Pengguna</a>
         <a href="{{ route('Admin/jadwal-ronda')}}" class="nav-item nav-link {{ \Route::is('Admin/jadwal-ronda') ? 'active' : ''}}"><i
                 class="bi bi-check-circle me-1"></i>Jadwal Ronda</a>
+        <a href="{{ route('Admin/data-pelapor')}}" class="nav-item nav-link {{ \Route::is('Admin/data-pelapor') ? 'active' : ''}}"><i
+                class="bi bi-check-circle me-1"></i>Data Pelapor</a>
         {{--  <a href="{{ route('Admin.manajemen-report') }}" class="nav-item nav-link {{ \Route::is('') ? 'active' : ''}}"><i
                 class="far fa-file-alt me-1"></i>Manajemen Report</a>  --}}
     </div>

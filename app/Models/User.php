@@ -32,6 +32,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(roles::class, 'id_role');
     }
+    public function laporan(){
+        return $this->hasMany(Laporan::class, 'id_user', 'id',);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

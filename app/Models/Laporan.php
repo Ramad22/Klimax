@@ -12,4 +12,8 @@ class Laporan extends Model
     protected $table = 'laporans';
     protected $fillable = ['perkara', 'id_user'];
     protected $primaryKey = 'id_user';
+
+    public function user(){
+        return $this->belongsTo(User::class, 'id_user', 'name', 'id');
+    }
 }
