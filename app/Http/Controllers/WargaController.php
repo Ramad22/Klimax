@@ -13,6 +13,29 @@ use Illuminate\Support\Facades\Http;
 
 class WargaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            // Periksa apakah pengguna telah login
+            if (Auth::check()) {
+                // Jika pengguna telah login, periksa peran pengguna
+                $userRole = Auth::user()->id_role;
+
+                // Jika peran pengguna bukan admin, arahkan ke halaman 403
+                if ($userRole !== 2) {
+                    abort(403, 'Anda tidak memiliki akses ke halaman ini');
+                }
+            } else {
+                // Jika pengguna belum login, arahkan ke halaman login
+                return redirect('/sign-in');
+            }
+
+            // Lanjutkan proses middleware
+            return $next($request);
+        });
+    }
+
     public function landingPage()
     {   
        $jadwal = [

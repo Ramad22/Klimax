@@ -60,5 +60,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
     Route::get('resultUser', [AdminController::class, 'resultUser'])->name('resultUser');
     Route::get('resultJadwal', [AdminController::class, 'resultJadwal'])->name('resultJadwal');
 
+    
+
 
 
