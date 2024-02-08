@@ -6,16 +6,20 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Button trigger modal -->
-    <div class="container">
-
-        <button type="button" style="float:right;" class="btn btn-primary my-0 mt-2 " data-bs-toggle="modal"
-            data-bs-target="#exampleNote">
+    <h6 class="fw-bold py-3 mb-0 ms-3"><span class="text-muted fw-light"></span>Data Ronda</h6>
+    <div class="container mb-4">
+        <button type="button" style="float:right; margin-buttom: 50px;" class="btn btn-primary my-0 mt-2"
+            data-bs-toggle="modal" data-bs-target="#exampleNote">
             Tambah
         </button>
     </div>
-    <h6 class="fw-bold py-3 mb-6 ms-3"><span class="text-muted fw-light"></span>Jadwal Ronda</h6>
 
-
+    <div class="d-none d-md-flex ms-4">
+        <form action="{{ route('resultJadwal') }}" method="GET">
+            <input style="margin-bottom: 10px;" type="search" name="search" class="form-control border-2 w-75 "
+                placeholder="Search">
+        </form>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="exampleNote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog ">
@@ -27,8 +31,8 @@
                     <form action="{{ route('addJadwal') }}" method="POST">
                         @csrf
                         <div class="form-floating mb-3">
-                            <select class="form-control" name="hari" id="">
-                                <option selected>Pilih Hari</option>
+                            <select class="form-control" name="hari" id="" required>
+                                <option value=""selected>Pilih Hari</option>
                                 <option value="Senin">Senin</option>
                                 <option value="Selasa">Selasa</option>
                                 <option value="Rabu">Rabu</option>
@@ -40,23 +44,33 @@
                             <label for="endsOn">Hari</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select class="form-control" name="id_warga" id="">
-                                <option selected>Pilih Nama Warga</option>
+                            <select class="form-control" name="id_warga" id="selectNamaWarga" required>
+                                <option value="" selected>Pilih Nama Warga</option>
                                 @foreach ($warga as $item)
-                                    <option value="{{ $item->id_warga }}">{{ $item->nama_warga }}</option>
+                                    <option value="{{ $item->id_warga }}" data-nohp="{{ $item->no_hp }}">
+                                        {{ $item->nama_warga }}</option>
                                 @endforeach
                             </select>
                             <label for="endsOn">Nama Warga</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select class="form-control" name="no_hp" id="">
-                                <option selected>Pilih No Hp</option>
-                                @foreach ($warga as $item)
-                                    <option value="{{ $item->no_hp }}">{{ $item->no_hp }}</option>
-                                @endforeach
-                            </select>
-                            <label for="endsOn">No Hp</label>
+                            <input type="hidden" class="form-control" name="id_no_hp" id="inputNoHp" placeholder=" "
+                                readonly>
                         </div>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                var selectNamaWarga = document.getElementById("selectNamaWarga");
+                                var inputNoHp = document.getElementById("inputNoHp");
+
+                                selectNamaWarga.addEventListener("change", function() {
+                                    var selectedNamaWargaId = this.value; // Mendapatkan ID nama warga yang dipilih
+
+                                    // Isi input nomor telepon dengan ID nomor HP yang sesuai
+                                    inputNoHp.value = selectedNamaWargaId;
+                                });
+                            });
+                        </script>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal">Close</button>
@@ -72,7 +86,7 @@
         <div class="bg-light rounded h-100 p-4">
 
             <div class="table-responsive">
-                <table class="table table-borderless">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col" class="text-center">#</th>
@@ -85,11 +99,11 @@
                     <tbody>
                         <tr>
                             {{--  @foreach ($target as $index => $t)  --}}
-                            @foreach ($jadwal as $item)
-                                <td class="text-center">{{ $loop->iteration }}</td>
+                               @foreach ($jadwal as $index => $item)
+                                <td class="text-center">{{ $index + $jadwal->firstItem() }}</td>
                                 <td class="text-center">{{ $item->hari }}</td>
                                 <td class="text-center">{{ $item->dataWarga->nama_warga }}</td>
-                                <td class="text-center">{{ $item->no_hp }}</td>
+                                <td class="text-center">{{ $item->dataWarga->no_hp }}</td>
                                 <form action="{{ route('hapusJadwal', $item->id_jadwal) }}" method="GET"
                                     onsubmit="return confirm ('Are you sure want to delete this ?')">
                                     @csrf
@@ -97,8 +111,8 @@
                                     <td class="text-center"><button class="btn btn-light" type="submit"><i
                                                 class="fa fa-trash"></button></i>
                                 </form>
-                                <button class="btn btn-light" type="submit" data-bs-toggle="modal"
-                                    data-bs-target="#editJadwal{{ $item->id_jadwal }}"><i class="fa fa-pen"></button></i>
+                                {{--  <button class="btn btn-light" type="submit" data-bs-toggle="modal"
+                                    data-bs-target="#editJadwal{{ $item->id_jadwal }}"><i class="fa fa-pen"></button></i>  --}}
                                 </td>
 
                         </tr>
@@ -106,7 +120,6 @@
 
             </div>
         </div>
-        {{--  <p class="mt-3"> {{$target->links()}} </p>  --}}
     </div>
     </div>
     </div>
@@ -116,14 +129,14 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="text-center mt-4">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Jadwal Ronda</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Jadwal Ronda</h5>
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('editJadwal', $item->id_jadwal) }}" method="POST">
                         @csrf
                         <div class="form-floating mb-3">
                             <select class="form-control" name="hari" id="">
-                                <option value="{{ $item->hari }}">{{ $item->hari}}</option>
+                                <option value="{{ $item->hari }}">{{ $item->hari }}</option>
                                 <option value="Senin">Senin</option>
                                 <option value="Selasa">Selasa</option>
                                 <option value="Rabu">Rabu</option>
@@ -135,23 +148,28 @@
                             <label for="endsOn">Hari</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select class="form-control" name="id_warga" id="">
+                            <select class="form-control" name="id_warga" id="warga" required>
                                 <option value="{{ $item->id_warga }}">{{ $item->dataWarga->nama_warga }}</option>
                                 @foreach ($warga as $item)
-                                    <option value="{{ $item->id_warga }}">{{ $item->nama_warga }}</option>
-                                    @endforeach
-                                </select>
+                                    <option value="{{ $item->id_warga }}" data-nohp="{{ $item->no_hp }}">
+                                        {{ $item->nama_warga }}</option>
+                                @endforeach
+                            </select>
                             <label for="endsOn">Nama Warga</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <select class="form-control" name="no_hp" id="">
-                                <option value="{{ $item->no_hp }}">{{ $item->no_hp }}</option>
-                                @foreach ($warga as $item)
-                                    <option value="{{ $item->no_hp }}">{{ $item->no_hp }}</option>
+                            <select class="form-control" name="id_no_hp" id="warga" required>
+                                @foreach ($jadwal as $wargaItem)
+                                    <option value="{{ $wargaItem->id_no_hp }}">{{ $wargaItem->id_no_hp }}</option>
                                 @endforeach
                             </select>
                             <label for="endsOn">No Hp</label>
                         </div>
+
+                        {{--  <div class="form-floating mb-3">
+                            <input type="text" class="form-control" name="id_no_hp"  id="hp" placeholder=" " readonly>
+                        </div>  --}}
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light me-2" data-bs-dismiss="modal">Close</button>
@@ -164,6 +182,7 @@
             </table>
         </div>
     </div>
+    <p class="mt-3"> {{ $jadwal->links() }} </p>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

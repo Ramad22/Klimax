@@ -15,28 +15,44 @@ class AdminController extends Controller
         $warga = data_warga::count();
         $user = User::count();
         $jadwal = jadwal::count();
-        return view("Admin/dashboard", compact('warga', 'user', 'jadwal'));
+        $lapor = Laporan::count();
+        return view("Admin/dashboard", compact('warga', 'user', 'jadwal', 'lapor'));
     }
 
     public function dataWarga()
     {   
-        $warga = data_warga::all();
+        $warga = data_warga::paginate(25);
         return view("Admin/data-warga", compact('warga'));
     }
     public function storeWarga(Request $request)
     {
-        data_warga::create([
-            'nik'=> $request->nik,
-            'nama_warga'=> $request->nama_warga,
-            'tempat_lahir'=> $request->tempat_lahir,
-            'tanggal_lahir'=> $request->tanggal_lahir,
-            'alamat'=> $request->alamat,
-            'blok'=> $request->blok,
-            'status'=> $request->status,
-            'pekerjaan'=> $request->pekerjaan,
-            'no_hp'=> $request->no_hp,
-        ]);
-        return back();
+       $dataWarga = [
+        'nik'=> $request->nik,
+        'nama_warga'=> $request->nama_warga,
+        'tempat_lahir'=> $request->tempat_lahir,
+        'tanggal_lahir'=> $request->tanggal_lahir,
+        'alamat'=> $request->alamat,
+        'blok'=> $request->blok,
+        'status'=> $request->status,
+        'pekerjaan'=> $request->pekerjaan,
+        'no_hp'=> $request->no_hp,
+       ];
+
+       $wargas = data_warga::create($dataWarga);
+       $nama = ($request->nama_warga);
+       $password = str_replace('', '', strtolower($request->nama_warga));
+       $passwordHas = bcrypt($password); 
+
+       $role = $request->has('id_role') ? $request->id_role : 2;
+        $userData = [
+            'name'=>$nama,
+            'no_hp'=>$request->no_hp,
+            'id_role'=>$role,
+            'password'=>$passwordHas,
+            'blok'=>$request->blok,
+        ];
+        User::create($userData);
+        return back()->with('success', 'Data berhasil di tambahkan');
     }
     public function updateWarga(Request $request, $id_warga)
     {
@@ -52,7 +68,7 @@ class AdminController extends Controller
         $warga->no_hp = $request->input('no_hp');
         $warga->update();
 
-        return back();
+        return back()->with('update', 'Data berhasil di ubah');
     }
 
     public function deleteWarga($id_warga)
@@ -64,7 +80,7 @@ class AdminController extends Controller
     
     public function jadwalPengguna()
     {
-        $user = User::all();
+        $user = User::where('id_role', 2)->paginate(25);
         return view("Admin/data-pengguna", compact('user'));
     }
 
@@ -101,19 +117,21 @@ class AdminController extends Controller
 
     public function jadwalRonda()
     {
-        $jadwal = jadwal::all();
+        $jadwal = jadwal::orderBy('hari')->paginate(25);
         $warga = data_warga::all();
         return view("Admin/jadwal-ronda", compact('jadwal', 'warga'));
     }
 
     public function storeJadwal(Request $request)
-    {
+    {  
+        
         jadwal::create([
-            'hari'=> $request->hari,
-            'id_warga'=> $request->id_warga,
-            'no_hp'=> $request->no_hp,
+            'hari' => $request->hari,
+            'id_warga' => $request->id_warga,
+            'id_no_hp' => $request->id_no_hp
         ]);
-        return back();
+    
+        return redirect()->back()->with('success', 'Data berhasil di tambahkan.');
     }
 
     public function deleteJadwal($id_jadwal)
@@ -125,17 +143,47 @@ class AdminController extends Controller
 
     public function updateJadwal(Request $request, $id_jadwal)
     {
-        $jadawl = jadwal::findOrFail($id_jadwal);
-        $jadawl->hari = $request->input('hari');
-        $jadawl->id_warga = $request->input('id_warga');
-        $jadawl->no_hp = $request->input('no_hp');
-        $jadawl->update();
-        return back();
+        $jadwal = jadwal::findOrFail($id_jadwal);
+        $jadwal->hari = $request->input('hari');
+        $jadwal->id_warga = $request->input('id_warga');
+        $jadwal->id_no_hp = $request->input('id_no_hp');
+        $jadwal->save();
+        return back()->with('update', 'Data berhasail di ubah');
     }
 
     public function dataPelapor()
     {   
-        $lapor = Laporan::all();
+        $lapor = Laporan::with('user')->paginate(25);
         return view("Admin/data-pelapor", compact('lapor'));
+    }
+
+    public function resultWarga(Request $request)
+    {
+        if($request->has('search')){
+            $warga = data_warga::where('nama_warga', 'LIKE', '%'.$request->search. '%')->paginate(25);
+        }else{
+            $warga = data_warga::paginate(25);
+        }
+        return view('Admin/data-warga', compact('warga'));
+    }
+    public function resultUser(Request $request)
+    {
+        if($request->has('search')){
+            $user = User::where('name', 'LIKE', '%'.$request->search. '%')->paginate(25);
+        }else{
+            $user = User::paginate(25);
+        }
+        return view('Admin/data-pengguna', compact('user'));
+    }
+    public function resultJadwal(Request $request)
+    {
+        if($request->has('search')){
+            $jadwal = jadwal::where('hari', 'LIKE', '%'.$request->search. '%')->paginate(25);
+            $warga = data_warga::paginate(25);
+        }else{
+            $warga = data_warga::paginate(25);
+            $jadwal = jadwal::paginate(25);
+        }
+        return view('Admin/jadwal-ronda', compact('jadwal', 'warga'));
     }
 }

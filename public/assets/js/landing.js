@@ -11,3 +11,12 @@ window.addEventListener("scroll", ()=>{
     const windowPositon = window.scrollY > 0;
     navBar.classList.toggle("scrolling-active", windowPositon);
 });
+
+function pindah()
+{
+    document.getElementById('laporan').scrollIntoView({behavior: 'smooth'});
+}
+function panggilan()
+{
+    document.querySelector('.call-logo').classList.toggle('active');
+}

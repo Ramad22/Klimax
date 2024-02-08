@@ -14,12 +14,13 @@
     <!-- Modal -->
 
 
-
+    <div class="col-auto mb-3">
+    </div>
     <div class="col-12 mx-3 me-3">
         <div class="bg-light rounded h-100 p-4">
 
             <div class="table-responsive">
-                <table class="table table-borderless">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -32,7 +33,7 @@
                         <tr>
                             @foreach ($lapor as $t)
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td class="text-center">{{ $t->id_user }}</td>
+                                <td class="text-center">{{ $t->user->name }}</td>
                                 <td class="text-center">{{ $t->perkara }}</td>
                                 <td class="text-center"> @if ($t->created_at)
                                     {{ $t->created_at->format('d F Y') }}
@@ -42,9 +43,8 @@
                     @endforeach
             </div>
         </div>
-        {{--  <p class="mt-3"> {{$target->links()}} </p>  --}}
     </div>
-    <a href="tel:+111">tes</a>
+    <p class="mt-3"> {{$lapor->links()}} </p> 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

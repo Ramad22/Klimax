@@ -155,6 +155,7 @@ body{
     }
     .hero .box-hero .box:nth-child(1) button {
         width: 100px;
+        display: none;
     }
 
     .logo img {
@@ -194,6 +195,16 @@ body{
         top: 80px;
         opacity: 1;
         
+    }
+    .call-logo{
+       margin-right: -12px;
+       margin-bottom: -15px;
+    }
+    .lok{
+        align-items: left;
+        width: 400px;
+        float: left;
+        margin-left: -80px;
     }
 }
 @media screen and (max-width: 768px){
@@ -261,8 +272,6 @@ body{
 
 }
 .lokasi iframe  {
-    float: center;
-    /* margin-left: 150px; */
     margin-top: 1%; 
 }
 
@@ -333,36 +342,40 @@ footer {
     position: fixed;
     bottom: 50px;
     right: 50px;
-    background-color: #007bff; /* Warna latar belakang logo */
+    background-color: blue; 
     width: 50px;
     height: 50px;
-    border-radius: 50%; /* Membuat lingkaran */
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff; /* Warna teks */
+    color: #ffffff; 
     font-size: 24px;
-    cursor: pointer; /* Menunjukkan kursor saat diarahkan ke atasnya */
+    cursor: pointer; 
 }
 
 .emergency-call {
     position: fixed;
     bottom: 80px;
     right: 20px;
-    background-color: gray; /* Warna latar belakang tautan panggilan darurat */
+    background-color: gray; 
     padding: 10px;
     border-radius: 5px;
-    color: #ffffff; /* Warna teks */
+    color: #ffffff;
     text-align: center;
-    display: none; /* Sembunyikan tautan saat pertama kali */
+    display: none; 
 }
 
 .emergency-call a {
     display: block;
     margin-bottom: 5px;
+    color: #ffffff;
+    text-decoration: none;
+}
+.emergency-call a:hover {
+    background-color: #007bff;
 }
 
-/* Tampilkan tautan saat logo diklik */
 .call-logo.active + .emergency-call {
     display: block;
 }

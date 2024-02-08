@@ -88,8 +88,8 @@
         </div>
       
         <div style="display: flex; justify-content: ; flex-direction: column; align-items: ;">
-          <a style="margin-bottom: 0px; font-size: 13px; color: white;" href="#" class="text-right">Reset Password</a>
-          <button style="margin-top: 4%;" type="submit" class="btn btn-primary submit ">Masuk</button>
+          {{--  <a style="margin-bottom: 0px; font-size: 13px; color: white;" href="#" class="text-right">Reset Password</a>  --}}
+          <button style="margin-top: 6%;" type="submit" class="btn btn-primary submit ">Masuk</button>
         </div>      
       </form>
     </div>

@@ -6,16 +6,18 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Button trigger modal -->
-    <div class="container">
-
-        <button type="button" style="float:right;" class="btn btn-primary my-0 mt-2 " data-bs-toggle="modal"
-            data-bs-target="#tambahWarga">
-            Tambah
-        </button>
+    <h6 class="fw-bold py-3 mb-0 ms-3"><span class="text-muted fw-light"></span>Data Warga</h6>
+    <div class="container mb-4">
+        <button type="button" style="float:right; margin-buttom: 50px;" class="btn btn-primary my-0 mt-2" data-bs-toggle="modal"
+        data-bs-target="#tambahWarga">
+        Tambah
+    </button>
     </div>
-    <h6 class="fw-bold py-3 mb-6 ms-3"><span class="text-muted fw-light"></span>Data Warga</h6>
-
-
+    <div class="d-none d-md-flex ms-4">
+        <form action="{{ route('resultWarga')}}" method="GET">
+            <input style="margin-bottom: 10px;" type="search" name="search" class="form-control border-2 w-75 " placeholder="Search">
+        </form>
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="tambahWarga" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog ">
@@ -91,7 +93,7 @@
         <div class="bg-light rounded h-100 p-4">
 
             <div class="table-responsive">
-                <table class="table table-borderless">
+                <table class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -111,8 +113,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            @foreach ($warga as $t)
-                                <th scope="row">{{ $loop->iteration }}</th>
+                            @foreach ($warga as $index =>$t)
+                                <th scope="row">{{ $index + $warga->firstItem() }}</th>
                                 <td class="text-center">{{ $t->nik }}</td>
                                 <td class="text-center">{{ $t->nama_warga }}</td>
                                 <td class="text-center">{{ $t->jenis_kelamin }}</td>
@@ -144,7 +146,6 @@
                       
             </div>
         </div>
-        {{--  <p class="mt-3"> {{$target->links()}} </p>  --}}
     </div>
     </div>
     </div>
@@ -226,6 +227,7 @@
 
     </div>
     </div>
+    <p class="mt-3"> {{$warga->links()}} </p> 
 
     <script>
         function copyText() {

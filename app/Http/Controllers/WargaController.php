@@ -54,13 +54,14 @@ class WargaController extends Controller
             ]);
             $responseData = $response->json();
         }
-        Laporan::create([
-            'id_user'=>$idUser,
-            'perkara'=>$request->perkara,
-        ]);
+        Laporan::updateOrCreate(
+            ['id_user' => $idUser],
+            ['perkara' => $request->perkara]
+        );
+        
         sleep(4);
 
-        return redirect('landing-page');
+        return redirect('landing-page')->with('success', 'Laporan berhasil di sampaikan.');
     } catch (\Exception $e) {
         return "Error: " . $e->getMessage();
     }

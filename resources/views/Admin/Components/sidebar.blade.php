@@ -1,6 +1,6 @@
 <nav class="navbar bg-light navbar-light">
-    <a href="index.html" class="navbar-brand mx-4 mb-3">
-        <h3 class="text-primary"><i class="bi bi-journal-text me-2"></i>Klimax</h3>
+    <a href="" class="navbar-brand mx-4 mb-3">
+        <h3 class="text-primary"><i class="bi bi-shield-lock-fill me-2"></i>Klimax</h3>
     </a>
     <div class="d-flex align-items-center ms-4 mb-4">
         <div class="position-relative">
@@ -24,7 +24,7 @@
         <a href="{{ route('Admin/jadwal-ronda')}}" class="nav-item nav-link {{ \Route::is('Admin/jadwal-ronda') ? 'active' : ''}}"><i
                 class="bi bi-check-circle me-1"></i>Jadwal Ronda</a>
         <a href="{{ route('Admin/data-pelapor')}}" class="nav-item nav-link {{ \Route::is('Admin/data-pelapor') ? 'active' : ''}}"><i
-                class="bi bi-check-circle me-1"></i>Data Pelapor</a>
+                class="bi bi-clipboard-data me-1"></i>Data Pelapor</a>
         {{--  <a href="{{ route('Admin.manajemen-report') }}" class="nav-item nav-link {{ \Route::is('') ? 'active' : ''}}"><i
                 class="far fa-file-alt me-1"></i>Manajemen Report</a>  --}}
     </div>
