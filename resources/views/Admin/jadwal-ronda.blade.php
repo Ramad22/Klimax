@@ -6,7 +6,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Button trigger modal -->
-    <h6 class="fw-bold py-3 mb-0 ms-3"><span class="text-muted fw-light"></span>Data Ronda</h6>
+    <h6 class="fw-bold py-0 mb-0 ms-3"><span class="text-muted fw-light ms-6"></span>Data Ronda</h6>
     <div class="container mb-4">
         <button type="button" style="float:right; margin-buttom: 50px;" class="btn btn-primary my-0 mt-2"
             data-bs-toggle="modal" data-bs-target="#exampleNote">
@@ -14,9 +14,9 @@
         </button>
     </div>
 
-    <div class="d-none d-md-flex ms-4">
+    <div class="d-none d-md-flex ms-3">
         <form action="{{ route('resultJadwal') }}" method="GET">
-            <input style="margin-bottom: 10px;" type="search" name="search" class="form-control border-2 w-75 "
+            <input style="margin-bottom: 10px;" type="search" name="search" class="form-control border-2 w-75"
                 placeholder="Search">
         </form>
     </div>

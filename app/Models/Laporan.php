@@ -10,7 +10,7 @@ class Laporan extends Model
     use HasFactory;
 
     protected $table = 'laporans';
-    protected $fillable = ['perkara', 'id_user'];
+    protected $fillable = ['perkara', 'id_user', 'tkp'];
     protected $primaryKey = 'id_user';
 
     public function user(){

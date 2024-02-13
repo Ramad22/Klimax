@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>Klimax | Admin</title>
     <link rel="icon" href="{{ asset('assets/img/judul.jpg') }}" type="image/x-icon">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/9703/9703596.png" type="png/jpg"> 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">

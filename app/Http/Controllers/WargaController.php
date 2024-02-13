@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\data_warga;
 use App\Models\jadwal;
 use App\Models\Laporan;
+use App\Models\User;
 use App\Traits\WablasTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,7 +52,17 @@ class WargaController extends Controller
     }
     public function profile()
     {
-        return view("profile");
+        $user = User::all();
+        return view("profile", compact('user'));
+    }
+
+    public function updateProfile(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->no_hp = $request->input('no_hp');
+        $user->password = $request->input('password');
+        $user->update();
+        return back()->with('update', 'Profile berhasil di ubah.');
     }
 
     public function store(Request $request)
@@ -67,7 +78,7 @@ class WargaController extends Controller
 
 
         foreach ($phoneNumbers as $target) {
-            $message = "Terdapat $selectedOption Di RT 03 RW 14 Pada Nomer Rumah $userBlok. ( Mohon Kepada Setiap Warga Selalu Waspada ! ). ";
+            $message = "Terdapat $selectedOption Di RT 03 RW 14 Jln Mekarsari Pada Nomer Rumah $userBlok. ( Mohon Kepada Setiap Warga Selalu Waspada ! ). ";
             $response = Http::withHeaders([
                 'Authorization' => $token,
             ])->post('https://api.fonnte.com/send', [
@@ -79,7 +90,7 @@ class WargaController extends Controller
         }
         Laporan::updateOrCreate(
             ['id_user' => $idUser],
-            ['perkara' => $request->perkara]
+            ['perkara' => $request->perkara, 'tkp' => $userBlok]
         );
         
         sleep(4);

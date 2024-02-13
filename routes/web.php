@@ -3,6 +3,7 @@
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\WargaController;
 use App\Http\Controllers\AdminController;
+use App\Models\Warga;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -60,6 +61,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
     Route::get('resultUser', [AdminController::class, 'resultUser'])->name('resultUser');
     Route::get('resultJadwal', [AdminController::class, 'resultJadwal'])->name('resultJadwal');
 
+    // Route Edit-Profile
+    Route::post('/editProfile/{id}', [WargaController::class, 'updateProfile'])->name('editProfile');
+    
     
 
 

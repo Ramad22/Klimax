@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('laporans', function (Blueprint $table) {
             $table->id('id_user');
             $table->string('perkara', 50);
+            $table->string('blok', 50);
             $table->timestamps();
             $table->foreign('id_user')->references('id')->references('users');
         });

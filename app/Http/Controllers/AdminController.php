@@ -63,7 +63,8 @@ class AdminController extends Controller
 
        $wargas = data_warga::create($dataWarga);
        $nama = ($request->nama_warga);
-       $password = str_replace('', '', strtolower($request->nama_warga));
+    //    $password = str_replace('', '', strtolower($request->nama_warga));
+       $password = $nama;
        $passwordHas = bcrypt($password); 
 
        $role = $request->has('id_role') ? $request->id_role : 2;
@@ -128,7 +129,7 @@ class AdminController extends Controller
         $user->password = $request->input('password');
         $user->blok = $request->input('blok');
         $user->update();
-        return back();
+        return back()->with('update', 'Data berhasil di ubah');
     }
 
     public function deleteUser($id)

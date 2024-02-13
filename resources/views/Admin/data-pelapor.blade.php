@@ -26,6 +26,7 @@
                             <th scope="col">#</th>
                             <th scope="col" class="text-center">Nama Warga</th>
                             <th scope="col" class="text-center">Jenis Laporan</th>
+                            <th scope="col" class="text-center">TKP</th>
                             <th scope="col" class="text-center">Tanggal</th>
                         </tr>
                     </thead>
@@ -35,6 +36,7 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td class="text-center">{{ $t->user->name }}</td>
                                 <td class="text-center">{{ $t->perkara }}</td>
+                                <td class="text-center">{{ $t->tkp }}</td>
                                 <td class="text-center"> @if ($t->created_at)
                                     {{ $t->created_at->format('d F Y') }}
                                 @endif</td>
